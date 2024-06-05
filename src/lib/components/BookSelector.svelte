@@ -13,6 +13,7 @@ The navbar component.
     import SelectList from './SelectList.svelte';
     import * as numerals from '$lib/scripts/numeralSystem';
     import { goto } from '$app/navigation';
+    import { base } from '$app/paths';
 
     $: book = $nextRef.book === '' ? $refs.book : $nextRef.book;
     $: chapter = $nextRef.chapter === '' ? $refs.chapter : $nextRef.chapter;
@@ -160,11 +161,9 @@ The navbar component.
                         let cells = groups[groups.length - 1].cells;
                         groups[groups.length - 1].cells = [...cells, cell];
                     }
-                } else if (book.type == 'quiz' || 'Quiz') {
-                    quizGroup.push({
-                        label: book.name,
-                        id: book.id
-                    });
+                } else if (book.type.toLowerCase() === 'quiz') {
+                    let cells = groups.at(-1).cells;
+                    groups.at(-1).cells = [...cells, cell]
                 }
             });
 
