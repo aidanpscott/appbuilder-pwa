@@ -12,7 +12,7 @@ The navbar component.
     import config from '$lib/data/config';
     import SelectList from './SelectList.svelte';
     import * as numerals from '$lib/scripts/numeralSystem';
-    import { base } from '$app/paths';
+    import { goto } from '$app/navigation';
 
     $: book = $nextRef.book === '' ? $refs.book : $nextRef.book;
     $: chapter = $nextRef.chapter === '' ? $refs.chapter : $nextRef.chapter;
@@ -50,14 +50,15 @@ The navbar component.
      * Pushes reference changes to nextRef. Pushes final change to default reference.
      */
     async function navigateReference(e) {
-        if (
-            e.detail.tab == b &&
-            config.bookCollections
-                .find((x) => x.id === $refs.collection)
-                .books.find((x) => x.id == e.detail.text && x.type == 'quiz')
-        ) {
-            let address = `${base}/quiz/${$refs.collection}/${e.detail.text}`;
-            window.location.href = address;
+        // Handle special book navigation first 
+        if (e.detail.tab === b && e.detail?.type === 'quiz'){
+            const book = e.detail.text;
+            addHistory({
+                collection: $refs.collection,
+                book,
+                chapter: "1"
+            });
+            goto(`${base}/quiz/${$refs.collection}/${book}`);
             return;
         }
         if (!showChapterSelector) {
