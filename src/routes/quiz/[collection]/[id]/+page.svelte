@@ -27,6 +27,7 @@
     let score = 0;
     let questionNum = 0;
     let currentQuizQuestion;
+    let shuffleQuestions = true;
     let clicked = false;
     let displayCorrect = false;
     let currentQuestionAudio = null;
@@ -196,8 +197,11 @@
     }
 
     function getCurrentQuizQuestion() {
-        // If toggle on, return shuffle, else: return quiz.questions[questionNum];
-        return shuffledQuestions[questionNum];
+        if (shuffleQuestions) {
+            return shuffledQuestions[questionNum];
+        } else {
+            return quiz.questions[questionNum];
+        }
     }
 
     function getCommentary(score) {
