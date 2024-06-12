@@ -159,7 +159,7 @@
                         displayCorrect = true;
                     }, 1000);
                 }
-            }, 1000);
+            }, 0);
         }
     }
 
@@ -366,7 +366,7 @@
                                 </div>
                             </div>
                             {#if explanation}
-                                <div class="quiz-explanation mt-4">
+                                <div class="quiz-answer-explanation mt-4">
                                     {explanation}
                                 </div>
                             {/if}
