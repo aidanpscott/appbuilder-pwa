@@ -27,7 +27,7 @@
     let score = 0;
     let questionNum = 0;
     let currentQuizQuestion;
-    let shuffleQuestions = true;
+    let shuffleQuestionsToggle = true;
     let clicked = false;
     let displayCorrect = false;
     let currentQuestionAudio = null;
@@ -197,7 +197,7 @@
     }
 
     function getCurrentQuizQuestion() {
-        if (shuffleQuestions) {
+        if (shuffleQuestionsToggle) {
             return shuffledQuestions[questionNum];
         } else {
             return quiz.questions[questionNum];
