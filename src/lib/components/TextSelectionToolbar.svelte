@@ -203,7 +203,7 @@ TODO:
                     </button>
                 {/if}
                 {#if isRepeatableAudio && $refs.hasAudio && $refs.hasAudio.timingFile}
-                    <button class="dy-btn-sm dy-btn-ghost">
+                    <button class="dy-btn-sm dy-btn-ghost" on:click={() => playVerseAudio()}>
                         <AudioIcon.PlayRepeat color={barIconColor} />
                     </button>
                 {/if}
